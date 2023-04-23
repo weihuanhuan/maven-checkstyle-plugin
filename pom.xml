@@ -369,6 +369,66 @@ under the License.
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.2.0</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>9.3</version>
+          </dependency>
+          <dependency>
+            <groupId>com.jasonfitch.tools</groupId>
+            <artifactId>checkstyle-on-changed-file</artifactId>
+            <version>1.0.0</version>
+          </dependency>
+
+          <!-- using test resources -->
+          <dependency>
+            <groupId>com.jasonfitch.tools</groupId>
+            <artifactId>checkstyle-on-changed-file</artifactId>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
+            <version>1.0.0</version>
+          </dependency>
+
+          <!-- using bes resources -->
+          <dependency>
+            <groupId>com.bes.tools</groupId>
+            <artifactId>checkstyle-on-changed-file</artifactId>
+            <version>1.0.0</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+<!--          <configLocation>com/bes/tools/checkstyle/checkstyle.xml</configLocation>-->
+          <!-- default config within checkstyle-on-changed-file -->
+<!--          <configLocation>com/jasonfitch/tools/checkstyle/checkstyle.xml</configLocation>-->
+          <configLocation>com/jasonfitch/tools/checkstyle/test-checkstyle.xml</configLocation>
+<!--          <propertiesLocation>com/jasonfitch/tools/checkstyle/test-checkstyle.properties</propertiesLocation>-->
+          <!-- custom config with external file -->
+<!--           <configLocation>${project.basedir}/checkstyle/test-checkstyle.xml</configLocation>-->
+<!--           <propertiesLocation>${project.basedir}/checkstyle/test-checkstyle.properties</propertiesLocation>-->
+          <propertyExpansion>mavenProjectBasedir=${project.basedir}</propertyExpansion>
+          <violationSeverity>warning</violationSeverity>
+<!--          <maxAllowedViolations>8192</maxAllowedViolations>-->
+          <consoleOutput>true</consoleOutput>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <id>checkstyle-check</id>
+            <phase>validate</phase>
+            <inherited>true</inherited>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 

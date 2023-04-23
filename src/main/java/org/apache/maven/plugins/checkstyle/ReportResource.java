@@ -68,9 +68,4 @@ public class ReportResource
     {
         return resourcePathBase;
     }
-
-    public void setResourcePathBase( String resourcePathBase )
-    {
-        this.resourcePathBase = resourcePathBase;
-    }
-}
+    public void setResourcePathBase( String resourcePathBase ) {this.resourcePathBase                      =                                       resourcePathBase;}}
